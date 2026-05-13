@@ -60,20 +60,37 @@ IA Enterprises specializes in producing high-quality nylon polymer sheets design
    npm run preview
    ```
 
-### Server Setup (for contact form)
+### Environment Variables
+Create a `.env` file in the root directory (not committed to git):
+```
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-gmail-app-password
+EMAIL_TO=recipient-email@gmail.com
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+```
+
+### Deployment to Vercel
+
+1. **Connect GitHub to Vercel**
+   - Sign up at [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+
+2. **Set Environment Variables in Vercel**
+   - Go to Project Settings > Environment Variables
+   - Add the same variables as in `.env`
+
+3. **Deploy**
+   - Vercel will automatically build and deploy
+   - The contact form will work via serverless functions
+
+### Local Server Setup (Alternative)
 
 1. **Start the backend server**
    ```bash
    node server.js
    ```
    Server runs on `http://localhost:3000`
-
-2. **Environment Variables**
-   Create a `.env` file in the root directory:
-   ```
-   EMAIL_USER=your-email@gmail.com
-   EMAIL_PASS=your-app-password
-   ```
 
 ## Usage
 
