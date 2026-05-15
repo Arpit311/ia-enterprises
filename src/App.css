@@ -356,13 +356,18 @@ section > p {
 }
 
 @media (max-width: 768px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-    max-width: 500px;
+  .hero-section {
+    min-height: 98vh;
   }
 
   .hero-content {
     padding: 1rem 1.5rem;
+  }
+
+  .stats-grid {
+
+    grid-template-columns: 1fr;
+    max-width: 500px;
   }
 
   .logo-space {
