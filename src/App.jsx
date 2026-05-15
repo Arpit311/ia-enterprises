@@ -202,11 +202,11 @@ const cities = [
 ];
 
 const facilities = [
-  { title: "Precision Extrusion",   description: "State-of-the-art nylon polymer sheet extrusion for consistent thickness and finish." },
-  { title: "Print-Ready Sheets",    description: "Sheets formulated for premium print adhesion on cardboard packaging." },
-  { title: "Quality Assurance",     description: "In-house testing for strength, durability, and color consistency." },
-  { title: "Eco-Conscious Support", description: "Optimized processes to reduce waste and improve resource efficiency." },
-  { title: "On-Time Delivery",      description: "Reliable logistics and scheduled shipments to meet your production deadlines." },
+  { title: "Precision Extrusion",        description: "State-of-the-art nylon polymer sheet extrusion for consistent thickness and finish." },
+  { title: "Print-Ready Sheets",         description: "Sheets formulated for premium print adhesion on cardboard, woven sacks, and non-woven packaging." },
+  { title: "Quality Assurance",          description: "In-house testing for strength, durability, and color consistency." },
+  { title: "Eco-Conscious Support",      description: "Optimized processes to reduce waste and improve resource efficiency." },
+  { title: "On-Time Delivery",           description: "Reliable logistics and scheduled shipments to meet your production deadlines." },
 ];
 
 // ─── Main App ─────────────────────────────────────────────────────────────────
@@ -235,6 +235,10 @@ function App() {
   const handleNavClick = (e, sectionId) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    if (sectionId === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
     const element = document.querySelector(`#${sectionId} h2`);
     if (element) {
       setTimeout(() => {
@@ -310,14 +314,14 @@ function App() {
           </div>
           <div className="header-navigation">
             <span className="eyebrow">IA Enterprises</span>
-            <h1>Nylon polymer sheets for cardboard and carton box printing</h1>
+            <h1>Nylon polymer sheets and analogs for paper and carton printing</h1>
             <p>
-              Manufacturing print-ready polymer sheets for packaging, carton
+              Manufacturing print-ready polymer analogs for packaging, carton
               box, and folding board applications across India with trusted
               quality and brand-grade support.
             </p>
             <div className="header-actions">
-              <a href="#contact" className="hero-button" onClick={(e) => handleNavClick(e, "contact")}>
+              <a href="#send-query" className="hero-button" onClick={(e) => handleNavClick(e, "send-query")}>
                 Send Your Query
               </a>
             </div>
@@ -338,7 +342,7 @@ function App() {
             <div className={`mobile-menu${mobileMenuOpen ? " show" : ""}`} id="navbarNav">
               <div className="menu-content">
                 <ul className="navbar-nav">
-                  {[["about","About"],["partners","Trusted Partner Brands"],["facilities","Our Facilities"],["locations","Cities We Serve"],["contact","Contact"]].map(([id, label]) => (
+                   {[["home","Home"],["about","About"],["partners","Trusted Partner Brands"],["facilities","Our Facilities"],["locations","Cities We Serve"],["contact","Contact Us"],["send-query","Send Query"]].map(([id, label]) => (
                     <li key={id} className="nav-item">
                       <a className="nav-link" href={`#${id}`} onClick={(e) => handleNavClick(e, id)}>{label}</a>
                     </li>
@@ -356,10 +360,11 @@ function App() {
           <div>
             <h2>About Our Manufacturing</h2>
             <p>
-              We are a well-established manufacturer of nylon polymer sheets
+              We are a well-established manufacturer of nylon polymer analogs
               designed specifically for printed cardboard, carton box surfaces,
-              and packaging labels. Our films help brands achieve sharp
-              graphics, strong print adhesion, and premium shelf presence.
+              woven and non-woven sacks, and packaging labels. Our films help
+              brands achieve sharp graphics, strong print adhesion, and premium
+              shelf presence.
             </p>
           </div>
           <div className="stats-grid">
@@ -371,7 +376,7 @@ function App() {
             <article>
               <img src="/UV.png" alt="UV Process" className="card-image" />
               <h3>High Quality</h3>
-              <p>Strict process control for repeatable polymer sheet performance.</p>
+              <p>Strict process control for repeatable polymer analog performance.</p>
             </article>
             <article>
               <img src="/Washer.png" alt="Washing Process" className="card-image" />
@@ -415,13 +420,14 @@ function App() {
           <ul className="city-list">
             {cities.map(city => <li key={city}>{city}</li>)}
           </ul>
+          <p className="delivery-note">We can also deliver our products to other cities via courier services. Transport charges* may apply, and delivery is typically completed within 2-3 business days.</p>
         </section>
 
-        <section id="contact" className="contact-section">
-          <div className="contact-grid">
+        <section className="contact-section">
+          <div className="contact-grid" id="contact">
             <div className="contact-card">
               <h2>Contact Information</h2>
-              <p>For inquiries about nylon polymer sheets, custom orders, or supply partnerships, reach out to our team.</p>
+              <p>For inquiries about nylon polymer sheets for cardboard, carton boxes, woven and non-woven sacks, custom orders, or supply partnerships, reach out to our team.</p>
               <div className="contact-details">
                 <div><strong>Phone:</strong><p>+91 9456550662</p></div>
                 <div><strong>Email:</strong><p>kuldeepbhatnagar311@gmail.com</p></div>
@@ -449,34 +455,36 @@ function App() {
               </div>
             </div>
 
-            <div className="form-wrapper">
-              <form className="query-form" onSubmit={handleSubmit}>
-                <h2>Send Your Query</h2>
-                <p className="required-note">Fields marked with <span className="required">*</span> are required.</p>
-                <label>Name <span className="required">*</span>
-                  <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Your name" required />
-                </label>
-                <label>Email <span className="required">*</span>
-                  <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@example.com" required />
-                </label>
-                <label>Phone <span className="required">*</span>
-                  <input type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder="+91 9XXXXXXXXX" required />
-                </label>
-                <label>Firm Name
-                  <input type="text" name="firmName" value={form.firmName} onChange={handleChange} placeholder="Your company or firm name" />
-                </label>
-                <label>City
-                  <input type="text" name="city" value={form.city} onChange={handleChange} placeholder="City where you need supply" />
-                </label>
-                <label>Message
-                  <textarea name="message" value={form.message} onChange={handleChange} placeholder="Tell us about your requirements" rows="5" />
-                </label>
-                <button type="submit" disabled={loading || !form.name.trim() || !form.email.trim() || !form.phone.trim()}>
-                  {loading ? "Sending..." : "Submit Query"}
-                </button>
-                {submitted && <p className="success-message">Thanks! Your query has been sent. We'll get back to you soon!</p>}
-                {error    && <p className="error-message">{error}</p>}
-              </form>
+              <div className="form-wrapper" id="send-query">
+               <form className="query-form" onSubmit={handleSubmit}>
+                 <h2>Send Your Query</h2>
+                 <div className="query-fields">
+                   <p className="required-note">Fields marked with <span className="required">*</span> are required.</p>
+                   <label>Name <span className="required">*</span>
+                     <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Your name" required />
+                   </label>
+                   <label>Email <span className="required">*</span>
+                     <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@example.com" required />
+                   </label>
+                   <label>Phone <span className="required">*</span>
+                     <input type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder="+91 9XXXXXXXXX" required />
+                   </label>
+                   <label>Firm Name
+                     <input type="text" name="firmName" value={form.firmName} onChange={handleChange} placeholder="Your company or firm name" />
+                   </label>
+                   <label>City
+                     <input type="text" name="city" value={form.city} onChange={handleChange} placeholder="City where you need supply" />
+                   </label>
+                   <label>Message
+                     <textarea name="message" value={form.message} onChange={handleChange} placeholder="Tell us about your requirements" rows="5" />
+                   </label>
+                 </div>
+                 <button type="submit" disabled={loading || !form.name.trim() || !form.email.trim() || !form.phone.trim()}>
+                   {loading ? "Sending..." : "Submit Query"}
+                 </button>
+                 {submitted && <p className="success-message">Thanks! Your query has been sent. We'll get back to you soon!</p>}
+                 {error    && <p className="error-message">{error}</p>}
+               </form>
             </div>
           </div>
         </section>
