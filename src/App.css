@@ -106,15 +106,15 @@ html {
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
 }
 
-.header-navigation p {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 700px;
-  margin: 0 auto 2rem auto;
+.header-actions {
+  margin-top: 2.5rem;
 }
 
-.header-actions {
+
+.partners-count {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
   margin-top: 1rem;
 }
 
@@ -293,7 +293,7 @@ main {
 
 /* Section styles */
 section {
-  padding: 5rem 2rem;
+  padding: 3.75rem 2rem;
 }
 
 section h2 {
@@ -301,6 +301,7 @@ section h2 {
   font-weight: 800;
   color: var(--dark);
   text-align: center;
+  margin-top: 0;
   margin-bottom: 1rem;
 }
 
@@ -315,16 +316,12 @@ section > p {
 /* ==================== INTRO/ABOUT SECTION ==================== */
 .intro-section {
   background: white;
-}
+  padding: 3.75rem 1.5rem;
 
-.intro-section > div {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.intro-section {
-  background: white;
-  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .intro-section > div {
@@ -334,14 +331,8 @@ section > p {
 }
 
 .intro-section h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
-}
-
-.intro-section p {
-  font-size: 1.0625rem;
-  line-height: 1.7;
-  color: var(--text);
 }
 
 /* Stats Grid - parallel alignment */
@@ -349,8 +340,8 @@ section > p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  margin-top: 2.5rem;
   max-width: 1000px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -487,12 +478,25 @@ section > p {
 /* ==================== PARTNERS SECTION ==================== */
 .partners-section {
   background: var(--gradient);
+  padding: 3.75rem 2rem;
   color: white;
   overflow: hidden;
-  padding: 2.5rem 0;
 }
 
+.partners-section > p {
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
 
+.contact-card h2 {
+  margin-bottom: 1rem;
+}
+
+.partners-section h2 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 1rem;
+}
 
 .partners-count {
   text-align: center;
@@ -501,23 +505,10 @@ section > p {
   margin-top: 1rem;
 }
 
-.partners-section h2 {
-  margin-bottom: 0.5rem;
-  font-size: 2rem;
-  color: white;
-}
-
-.partners-section > p {
-  margin-bottom: 2rem;
-  font-size: 1.125rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-
 /* ==================== FACILITIES SECTION ==================== */
 .facilities-section {
   background: white;
-  padding: 3rem 2rem 4rem;
+  padding: 3.75rem 2rem;
 }
 
 .facility-grid {
@@ -699,7 +690,7 @@ section > p {
 /* ==================== CONTACT SECTION ==================== */
 .contact-section {
   background: white;
-  padding: 5rem 2rem 3rem 2rem;
+  padding: 3.75rem 2rem 3.75rem 2rem;
 }
 
 .contact-section h2 {

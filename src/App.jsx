@@ -206,8 +206,8 @@ const partnerSlides = [
 
 
 const facilities = [
-  { title: "Precision Extrusion",        description: "State-of-the-art nylon polymer sheet extrusion for consistent thickness and finish." },
-  { title: "Print-Ready Sheets",         description: "Sheets formulated for premium print adhesion on cardboard, woven sacks, and non-woven packaging." },
+  { title: "Precision Extrusion",        description: "State-of-the-art nylon polymer analog extrusion for consistent thickness and finish." },
+  { title: "Print-Ready Analogs",         description: "Analogs formulated for premium print adhesion on cardboard, woven sacks, and non-woven packaging." },
   { title: "Quality Assurance",          description: "In-house testing for strength, durability, and color consistency." },
   { title: "Eco-Conscious Support",      description: "Optimized processes to reduce waste and improve resource efficiency." },
   { title: "On-Time Delivery",           description: "Reliable logistics and scheduled shipments to meet your production deadlines." },
@@ -318,7 +318,7 @@ function App() {
           </div>
           <div className="header-navigation">
             <span className="eyebrow">IA Enterprises</span>
-            <h1>Nylon polymer sheets and analogs for paper and carton printing</h1>
+            <h1>Nylon polymer stereos and analogs for paper and carton printing</h1>
             <p>
               Manufacturing print-ready polymer analogs for packaging, carton
               box, and folding board applications across India with trusted
@@ -346,7 +346,7 @@ function App() {
             <div className={`mobile-menu${mobileMenuOpen ? " show" : ""}`} id="navbarNav">
               <div className="menu-content">
                 <ul className="navbar-nav">
-                   {[["home","Home"],["about","About"],["partners","Trusted Partner Brands"],["facilities","Our Facilities"],["locations","Cities We Serve"],["contact","Contact Us"],["send-query","Send Query"]].map(([id, label]) => (
+                   {[["home","Home"],["about","About IA"],["partners","Trusted Partner Brands"],["facilities","Our Facilities"],["locations","Our Delivery Coverage"],["contact","Contact Us"],["send-query","Send Query"]].map(([id, label]) => (
                     <li key={id} className="nav-item">
                       <a className="nav-link" href={`#${id}`} onClick={(e) => handleNavClick(e, id)}>{label}</a>
                     </li>
@@ -393,7 +393,7 @@ function App() {
         {/* ── Partners section now uses the magnifying carousel ── */}
         <section id="partners" className="partners-section">
           <h2>Trusted Partner Brands</h2>
-          <p>We manufacture nylon polymer analog to leading brands and packaging firms across the country.</p>
+          <p>We manufacture nylon polymer analog for leading brands and packaging firms across the country.</p>
           <MagnifyCarousel slides={partnerSlides} />
           <p className="partners-count">We have partnered with 25+ trusted brands so far</p>
         </section>
@@ -423,7 +423,7 @@ function App() {
           <p>Based in Haridwar, Uttarakhand, we deliver polymer analogs across the country through a combination of local logistics and nationwide courier partners.</p>
           <div className="delivery-grid">
             <div className="delivery-map">
-              <img src="/india.png" alt="India" />
+              <img src="/india.svg" alt="India" />
             </div>
             <div className="delivery-cards">
               <div className="delivery-card">
