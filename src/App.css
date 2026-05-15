@@ -357,7 +357,7 @@ section > p {
 
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 98vh;
+    min-height: 96vh;
   }
 
   .hero-content {
