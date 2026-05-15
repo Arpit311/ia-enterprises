@@ -198,7 +198,7 @@ const partnerSlides = [
 
 const cities = [
   "Haridwar", "Roorkee", "Dehradun",
-  "Meerut", "Muzaffarnagar", "Saharanpur", "Panipat",
+  "Meerut", "Muzaffarnagar", "Saharanpur", "Panipat", "Siliguri",
 ];
 
 const facilities = [
@@ -491,7 +491,7 @@ function App() {
       </main>
 
       <footer className="footer-section">
-        <p>© {new Date().getFullYear()} IA Enterprises. Nylon polymer sheet manufacturing across India.</p>
+        <p>© {new Date().getFullYear()} IA Enterprises. Nylon polymer analog manufacturing across India.</p>
       </footer>
     </div>
   );
