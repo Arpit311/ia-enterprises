@@ -184,22 +184,26 @@ function MagnifyCarousel({ slides }) {
   );
 }
 
+
 // ─── Partner brand images for the carousel ───────────────────────────────────
 const partnerSlides = [
-  { src: "/patanjali.png", label: "Patanjali" },
-  { src: "/anchor.jpg",    label: "Anchor"    },
-  { src: "/havells.png",   label: "Havells"   },
-  { src: "/borosil.png",   label: "Borosil"   },
-  { src: "/dabur.png",     label: "Dabur"     },
-  { src: "/reliance.png",  label: "Reliance"  },
-  { src: "/tata.png",      label: "Tata"      },
-  { src: "/godrej.png",    label: "Godrej"    },
+  { src: "/patanjali.png",  label: "Patanjali"  },
+  { src: "/anchor.jpg",     label: "Anchor"     },
+  { src: "/havells.png",    label: "Havells"    },
+  { src: "/borosil.png",    label: "Borosil"    },
+  { src: "/dabur.png",      label: "Dabur"      },
+  { src: "/reliance.png",   label: "Reliance"   },
+  { src: "/tata.png",       label: "Tata"       },
+  { src: "/godrej.png",     label: "Godrej"     },
+  { src: "/bosch.svg",      label: "Bosch"      },
+  { src: "/shreecement.png",label: "Shree Cement"},
+  { src: "/nfl.png",        label: "NFL"        },
+  { src: "/ultratech.png",  label: "UltraTech"  },
+  { src: "/kent.svg",       label: "Kent"       },
+  { src: "/usha.png",       label: "Usha"       },
+  { src: "/orient.avif",    label: "Orient"     },
 ];
 
-const cities = [
-  "Haridwar", "Roorkee", "Dehradun",
-  "Meerut", "Muzaffarnagar", "Saharanpur", "Panipat", "Siliguri",
-];
 
 const facilities = [
   { title: "Precision Extrusion",        description: "State-of-the-art nylon polymer sheet extrusion for consistent thickness and finish." },
@@ -361,8 +365,8 @@ function App() {
             <h2>About Our Manufacturing</h2>
             <p>
               We are a well-established manufacturer of nylon polymer analogs
-              designed specifically for printed cardboard, carton box surfaces,
-              woven and non-woven sacks, and packaging labels. Our films help
+              designed specifically for printing on paper and cardboard, carton box surfaces,
+              woven and non-woven sacks, packaging labels and polyethylene films. Our analogs help
               brands achieve sharp graphics, strong print adhesion, and premium
               shelf presence.
             </p>
@@ -389,7 +393,7 @@ function App() {
         {/* ── Partners section now uses the magnifying carousel ── */}
         <section id="partners" className="partners-section">
           <h2>Trusted Partner Brands</h2>
-          <p>We supply polymer sheet solutions to leading brands and packaging firms across the country.</p>
+          <p>We manufacture nylon polymer analog to leading brands and packaging firms across the country.</p>
           <MagnifyCarousel slides={partnerSlides} />
           <p className="partners-count">We have partnered with 25+ trusted brands so far</p>
         </section>
@@ -415,19 +419,36 @@ function App() {
         </section>
 
         <section id="locations" className="locations-section">
-          <h2>Cities We Serve</h2>
-          <p>Our manufacturing and distribution network is based in Haridwar, Roorkee, Dehradun and nearby regions in Uttarakhand and UP.</p>
-          <ul className="city-list">
-            {cities.map(city => <li key={city}>{city}</li>)}
-          </ul>
-          <p className="delivery-note">We can also deliver our products to other cities via courier services. Transport charges* may apply, and delivery is typically completed within 2-3 business days.</p>
+          <h2>Our Delivery Coverage</h2>
+          <p>Based in Haridwar, Uttarakhand, we deliver polymer analogs across the country through a combination of local logistics and nationwide courier partners.</p>
+          <div className="delivery-grid">
+            <div className="delivery-map">
+              <img src="/india.png" alt="India" />
+            </div>
+            <div className="delivery-cards">
+              <div className="delivery-card">
+                <div className="delivery-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18" r="2.5"/><circle cx="18.5" cy="18" r="2.5"/></svg>
+                </div>
+                <h3>Near Haridwar</h3>
+                <p>We deliver within <strong>24 hours</strong> to Haridwar, Roorkee, Dehradun and nearby locations in Uttarakhand and UP through our own fleet.</p>
+              </div>
+              <div className="delivery-card">
+                <div className="delivery-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v4"/><polyline points="3 10 12 15 21 10"/><path d="M7 16v2a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3v-2"/><line x1="3" y1="22" x2="11" y2="22"/><line x1="13" y1="22" x2="21" y2="22"/><line x1="7" y1="22" x2="7" y2="17"/><line x1="17" y1="22" x2="17" y2="17"/></svg>
+                </div>
+                <h3>Across India</h3>
+                <p>For all other cities across the country, we ship through trusted courier partners. Transport charges* may apply, and delivery is typically completed within <strong>2-3 business days</strong>.</p>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className="contact-section">
           <div className="contact-grid" id="contact">
             <div className="contact-card">
               <h2>Contact Information</h2>
-              <p>For inquiries about nylon polymer sheets for cardboard, carton boxes, woven and non-woven sacks, custom orders, or supply partnerships, reach out to our team.</p>
+              <p>For inquiries about nylon polymer blocks for cardboard, carton boxes, woven and non-woven sacks, custom orders, or supply partnerships, reach out to our team.</p>
               <div className="contact-details">
                 <div><strong>Phone:</strong><p>+91 9456550662</p></div>
                 <div><strong>Email:</strong><p>kuldeepbhatnagar311@gmail.com</p></div>
@@ -435,9 +456,12 @@ function App() {
                 <div>
                   <strong>Location:</strong>
                   <iframe
-                    src="https://maps.google.com/maps?q=29.969684,78.044939&output=embed"
-                    width="300" height="200"
-                    style={{ border: 0 }} allowFullScreen="" loading="lazy"
+                    src="https://maps.google.com/maps?q=29.969684,78.044939&z=15&output=embed&iwloc=near"
+                    width="300"
+                    height="200"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   ></iframe>
                   <address style={{ marginTop: "0.5rem", fontStyle: "normal" }}>
@@ -450,7 +474,6 @@ function App() {
                     Pin -249404
                   </address>
                 </div>
-                <div><strong>Service Areas:</strong><p>Haridwar · Roorkee · Dehradun · Meerut · Muzaffarnagar · Saharanpur</p></div>
                 <div><strong>GST Number:</strong><p>05AGYPB839F1ZW</p></div>
               </div>
             </div>
