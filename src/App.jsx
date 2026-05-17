@@ -321,7 +321,7 @@ function App() {
             <h1>Nylon polymer stereos and analogs for paper and carton printing</h1>
             <p>
               Manufacturing print-ready polymer analogs for packaging, carton
-              box, and folding board applications across India with trusted
+              box, and folding board applications with trusted
               quality and brand-grade support.
             </p>
             <div className="header-actions">
@@ -390,12 +390,11 @@ function App() {
           </div>
         </section>
 
-        {/* ── Partners section now uses the magnifying carousel ── */}
         <section id="partners" className="partners-section">
           <h2>Trusted Partner Brands</h2>
-          <p>We manufacture nylon polymer analog for leading brands and packaging firms across the country.</p>
+          <p>Our Analogs deliver superior print clarity and durability for cardboard, carton, and flexible packaging applications.</p>
           <MagnifyCarousel slides={partnerSlides} />
-          <p className="partners-count">We have partnered with 25+ trusted brands so far</p>
+          <p className="partners-count">We have partnered with 25+ trusted brands so far.</p>
         </section>
 
         <section id="facilities" className="facilities-section">
@@ -514,7 +513,7 @@ function App() {
       </main>
 
       <footer className="footer-section">
-        <p>© {new Date().getFullYear()} IA Enterprises. Nylon polymer analog manufacturing across India.</p>
+        <p>© {new Date().getFullYear()} IA Enterprises. Nylon polymer analog manufacturing firm.</p>
       </footer>
     </div>
   );
