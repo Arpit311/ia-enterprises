@@ -148,5 +148,11 @@ This project is proprietary to IA Enterprises. All rights reserved.
 
 For technical inquiries about this website:
 - Email: kuldeepbhatnagar311@gmail.com
-- Phone: +91 9456550662</content>
+- Phone: +91 7017150799
+
+## Developer Details
+
+- Phone: 9548832221
+- Name: Arpit Bhatnagar
+- Email: arpitbhatnagar097@gmail.com</content>
 <parameter name="filePath">README.md
