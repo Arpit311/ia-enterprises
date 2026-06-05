@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ia-enterprises.vercel.app/sitemap.xml

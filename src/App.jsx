@@ -26,7 +26,6 @@ function MagnifyCarousel({ slides }) {
   const dragStart   = useRef(null);
   const dragging    = useRef(false);
 
-  // ── compute per-slide style ──
   const styleForIndex = (i) => {
     const absDist = Math.abs(i - currentIndex);
     if (absDist === 0)  return { scale: CENTER_SCALE, opacity: 1,          zIndex: 5, isCenter: true  };
@@ -35,13 +34,6 @@ function MagnifyCarousel({ slides }) {
     return                     { scale: 0.6,          opacity: 0.15,       zIndex: 0, isCenter: false };
   };
 
-  // ── track offset ──
-  const trackOffset = () => {
-    const vpW = viewportRef.current ? viewportRef.current.clientWidth : window.innerWidth;
-    return vpW / 2 - ITEM_STEP / 2 - currentIndex * ITEM_STEP;
-  };
-
-  // ── auto-advance ──
   const startAuto = useCallback(() => {
     clearInterval(autoTimer.current);
     autoTimer.current = setInterval(() => {
@@ -58,7 +50,6 @@ function MagnifyCarousel({ slides }) {
     return () => clearInterval(autoTimer.current);
   }, [startAuto]);
 
-  // ── seamless infinite jump after transition ──
   const handleTransitionEnd = useCallback((e) => {
     if (e.propertyName !== "transform") return;
     isAnimating.current = false;
@@ -70,7 +61,6 @@ function MagnifyCarousel({ slides }) {
     setAnimated(false);
   }, [N]);
 
-  // ── navigate ──
   const goTo = useCallback((dir) => {
     if (isAnimating.current) return;
     isAnimating.current = true;
@@ -80,7 +70,6 @@ function MagnifyCarousel({ slides }) {
     startAuto();
   }, [startAuto]);
 
-  // ── drag / swipe ──
   const onPointerDown = (e) => {
     dragStart.current = e.type.startsWith("touch") ? e.touches[0].clientX : e.clientX;
     dragging.current  = false;
@@ -100,7 +89,6 @@ function MagnifyCarousel({ slides }) {
     goTo(dx < 0 ? 1 : -1);
   };
 
-  // ── keyboard ──
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "ArrowLeft")  goTo(-1);
@@ -111,11 +99,7 @@ function MagnifyCarousel({ slides }) {
   }, [goTo]);
 
   const realIdx = ((currentIndex % N) + N) % N;
-  const offset  = viewportRef.current
-    ? viewportRef.current.clientWidth / 2 - ITEM_STEP / 2 - currentIndex * ITEM_STEP
-    : 0;
 
-  // Recalc offset on resize
   const [, forceUpdate] = useState(0);
   useEffect(() => {
     const onResize = () => forceUpdate(n => n + 1);
@@ -164,7 +148,13 @@ function MagnifyCarousel({ slides }) {
                   if (diff !== 0 && Math.abs(diff) <= 2) goTo(diff);
                 }}
               >
-                <img src={slide.src} alt={slide.label} loading="lazy" draggable="false" />
+                {/* SEO FIX: descriptive alt text for every brand logo */}
+                <img
+                  src={slide.src}
+                  alt={`${slide.label} – trusted partner of IA Enterprises nylon polymer analog supplier`}
+                  loading="lazy"
+                  draggable="false"
+                />
                 <div className="carousel-slide-overlay" />
                 <div className="carousel-slide-label-container">
                   <span className="carousel-slide-label">{slide.label}</span>
@@ -187,30 +177,30 @@ function MagnifyCarousel({ slides }) {
 
 // ─── Partner brand images for the carousel ───────────────────────────────────
 const partnerSlides = [
-  { src: "/patanjali.png",  label: "Patanjali"  },
-  { src: "/anchor.jpg",     label: "Anchor"     },
-  { src: "/havells.png",    label: "Havells"    },
-  { src: "/borosil.png",    label: "Borosil"    },
-  { src: "/dabur.png",      label: "Dabur"      },
-  { src: "/reliance.png",   label: "Reliance"   },
-  { src: "/tata.png",       label: "Tata"       },
-  { src: "/godrej.png",     label: "Godrej"     },
-  { src: "/bosch.svg",      label: "Bosch"      },
+  { src: "/patanjali.png",  label: "Patanjali"   },
+  { src: "/anchor.jpg",     label: "Anchor"      },
+  { src: "/havells.png",    label: "Havells"     },
+  { src: "/borosil.png",    label: "Borosil"     },
+  { src: "/dabur.png",      label: "Dabur"       },
+  { src: "/reliance.png",   label: "Reliance"    },
+  { src: "/tata.png",       label: "Tata"        },
+  { src: "/godrej.png",     label: "Godrej"      },
+  { src: "/bosch.svg",      label: "Bosch"       },
   { src: "/shreecement.png",label: "Shree Cement"},
-  { src: "/nfl.png",        label: "NFL"        },
-  { src: "/ultratech.png",  label: "UltraTech"  },
-  { src: "/kent.svg",       label: "Kent"       },
-  { src: "/usha.png",       label: "Usha"       },
-  { src: "/orient.avif",    label: "Orient"     },
+  { src: "/nfl.png",        label: "NFL"         },
+  { src: "/ultratech.png",  label: "UltraTech"   },
+  { src: "/kent.svg",       label: "Kent"        },
+  { src: "/usha.png",       label: "Usha"        },
+  { src: "/orient.avif",    label: "Orient"      },
 ];
 
 
 const facilities = [
-  { title: "Precision Extrusion",        description: "State-of-the-art nylon polymer analog extrusion for consistent thickness and finish." },
-  { title: "Print-Ready Analogs",         description: "Analogs formulated for premium print adhesion on cardboard, woven sacks, and non-woven packaging." },
-  { title: "Quality Assurance",          description: "In-house testing for strength, durability, and color consistency." },
-  { title: "Eco-Conscious Support",      description: "Optimized processes to reduce waste and improve resource efficiency." },
-  { title: "On-Time Delivery",           description: "Reliable logistics and scheduled shipments to meet your production deadlines." },
+  { title: "Precision Extrusion",   description: "State-of-the-art nylon polymer analog extrusion for consistent thickness and finish." },
+  { title: "Print-Ready Analogs",   description: "Analogs formulated for premium print adhesion on cardboard, woven sacks, and non-woven packaging." },
+  { title: "Quality Assurance",     description: "In-house testing for strength, durability, and color consistency." },
+  { title: "Eco-Conscious Support", description: "Optimized processes to reduce waste and improve resource efficiency." },
+  { title: "On-Time Delivery",      description: "Reliable logistics and scheduled shipments to meet your production deadlines." },
 ];
 
 // ─── Main App ─────────────────────────────────────────────────────────────────
@@ -218,14 +208,14 @@ function App() {
   const [form, setForm] = useState({
     name: "", email: "", phone: "", firmName: "", city: "", message: "",
   });
-  const [submitted,     setSubmitted]     = useState(false);
-  const [loading,       setLoading]       = useState(false);
-  const [error,         setError]         = useState(null);
-  const [mobileMenuOpen,setMobileMenuOpen]= useState(false);
+  const [submitted,      setSubmitted]      = useState(false);
+  const [loading,        setLoading]        = useState(false);
+  const [error,          setError]          = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      const toggler = document.querySelector(".navbar-toggler");
+      const toggler  = document.querySelector(".navbar-toggler");
       const collapse = document.getElementById("navbarNav");
       if (mobileMenuOpen && collapse && !collapse.contains(e.target)
           && e.target !== toggler && !toggler?.contains(e.target)) {
@@ -246,7 +236,7 @@ function App() {
     const element = document.querySelector(`#${sectionId} h2`);
     if (element) {
       setTimeout(() => {
-        const navbar = document.querySelector(".navbar");
+        const navbar       = document.querySelector(".navbar");
         const navbarHeight = navbar ? navbar.offsetHeight : 0;
         const elementPosition = element.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({ top: elementPosition - navbarHeight - 10, behavior: "smooth" });
@@ -314,15 +304,19 @@ function App() {
       <header className="hero-section">
         <div className="hero-content">
           <div className="logo-space">
-            <img src="/Logo.png" alt="IA Enterprises Logo" className="company-logo" />
+            {/* SEO FIX: descriptive alt text on logo */}
+            <img src="/Logo.png" alt="IA Enterprises – Nylon Polymer Analog Manufacturer, Haridwar" className="company-logo" />
           </div>
           <div className="header-navigation">
             <span className="eyebrow">IA Enterprises</span>
-            <h1>Nylon polymer stereos and analogs for paper and carton printing</h1>
+            {/* SEO FIX: H1 is the most important on-page signal. Include primary keywords naturally. */}
+<h1>
+  Nylon Polymer Stereos &amp; Analogs for Carton Box and Cardboard Printing
+</h1>
             <p>
-              Manufacturing print-ready polymer analogs for packaging, carton
-              box, and folding board applications with trusted
-              quality and brand-grade support.
+              Haridwar-based manufacturer of print-ready nylon polymer analogs for
+              cardboard packaging, carton box printing, woven sacks, and folding board
+              applications. Trusted by Patanjali, Havells, Tata, and 25+ leading brands.
             </p>
             <div className="header-actions">
               <a href="#send-query" className="hero-button" onClick={(e) => handleNavClick(e, "send-query")}>
@@ -332,7 +326,7 @@ function App() {
           </div>
         </div>
 
-        <nav className="navbar fixed-top">
+        <nav className="navbar fixed-top" aria-label="Main navigation">
           <div className="container-fluid">
             <button
               className="navbar-toggler"
@@ -340,13 +334,22 @@ function App() {
               onClick={() => setMobileMenuOpen(prev => !prev)}
               aria-expanded={mobileMenuOpen}
               aria-controls="navbarNav"
+              aria-label="Toggle navigation menu"
             >
               <span className={`navbar-toggler-icon ${mobileMenuOpen ? "close" : ""}`}></span>
             </button>
             <div className={`mobile-menu${mobileMenuOpen ? " show" : ""}`} id="navbarNav">
               <div className="menu-content">
                 <ul className="navbar-nav">
-                   {[["home","Home"],["about","About IA"],["partners","Trusted Partner Brands"],["facilities","Our Facilities"],["locations","Our Delivery Coverage"],["contact","Contact Us"],["send-query","Send Query"]].map(([id, label]) => (
+                  {[
+                    ["home",       "Home"],
+                    ["about",      "About IA"],
+                    ["partners",   "Trusted Partner Brands"],
+                    ["facilities", "Our Facilities"],
+                    ["locations",  "Our Delivery Coverage"],
+                    ["contact",    "Contact Us"],
+                    ["send-query", "Send Query"],
+                  ].map(([id, label]) => (
                     <li key={id} className="nav-item">
                       <a className="nav-link" href={`#${id}`} onClick={(e) => handleNavClick(e, id)}>{label}</a>
                     </li>
@@ -360,45 +363,69 @@ function App() {
       </header>
 
       <main>
-        <section id="about" className="intro-section">
+        {/* ── About ──────────────────────────────────────────────────────────── */}
+        {/* SEO FIX: added itemScope + itemType for LocalBusiness structured data in HTML */}
+        <section id="about" className="intro-section" itemScope itemType="https://schema.org/LocalBusiness">
+          {/* Hidden but crawlable metadata — helps Google understand the business entity */}
+          <meta itemProp="name"        content="IA Enterprises" />
+           <meta itemProp="telephone"   content="+91-7017150799" />
+          <meta itemProp="email"       content="kuldeepbhatnagar311@gmail.com" />
+          <meta itemProp="url"         content="https://ia-enterprises.vercel.app/" />
+          <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+            <meta itemProp="streetAddress"   content="Vijay Nagar Colony, Plot no-11, Khasra no-516, Behind Atrish Public School, Roshanabad" />
+            <meta itemProp="addressLocality" content="Haridwar" />
+            <meta itemProp="addressRegion"   content="Uttarakhand" />
+            <meta itemProp="postalCode"      content="249404" />
+            <meta itemProp="addressCountry"  content="IN" />
+          </span>
+
           <div>
-            <h2>About Our Manufacturing</h2>
+            {/* SEO FIX: H2 includes primary keyword phrase */}
+            <h2>About IA Enterprises – Nylon Polymer Analog Manufacturing</h2>
             <p>
-              We are a well-established manufacturer of nylon polymer analogs
-              designed specifically for printing on paper and cardboard, carton box surfaces,
-              woven and non-woven sacks, packaging labels and polyethylene films. Our analogs help
-              brands achieve sharp graphics, strong print adhesion, and premium
-              shelf presence.
+              IA Enterprises is a well-established manufacturer of <strong>nylon polymer analogs</strong> designed
+              specifically for printing on paper and cardboard, carton box surfaces, woven and
+              non-woven sacks, packaging labels, and polyethylene films. Based in Haridwar,
+              Uttarakhand, our <strong>carton printing analogs</strong> help brands achieve sharp
+              graphics, strong print adhesion, and premium shelf presence across India.
             </p>
           </div>
           <div className="stats-grid">
             <article>
-              <img src="/Block.png" alt="Block Process" className="card-image" />
+              {/* SEO FIX: keyword-rich alt text */}
+              <img src="/Block.png" alt="Nylon polymer block for carton box printing – IA Enterprises" className="card-image" />
               <h3>Regional Coverage</h3>
-              <p>Operations across Haridwar, Roorkee, Dehradun and nearby regions for faster delivery.</p>
+              <p>Operations across Haridwar, Roorkee, Dehradun, and nearby regions of Uttarakhand and UP for faster delivery of polymer analogs.</p>
             </article>
             <article>
-              <img src="/UV.png" alt="UV Process" className="card-image" />
+              <img src="/UV.png" alt="UV process for nylon polymer analog quality check" className="card-image" />
               <h3>High Quality</h3>
-              <p>Strict process control for repeatable polymer analog performance.</p>
+              <p>Strict process control for repeatable <strong>nylon polymer analog</strong> performance across cardboard and carton packaging applications.</p>
             </article>
             <article>
-              <img src="/Washer.png" alt="Washing Process" className="card-image" />
+              <img src="/Washer.png" alt="Washing process for polymer printing analog plates" className="card-image" />
               <h3>Customer Focus</h3>
-              <p>Dedicated service for packaging converters, packaging printers, and FMCG brands.</p>
+              <p>Dedicated service for packaging converters, carton box printers, and FMCG brands requiring consistent analog supply.</p>
             </article>
           </div>
         </section>
 
-        <section id="partners" className="partners-section">
-          <h2>Trusted Partner Brands</h2>
-          <p>Our Analogs deliver superior print clarity and durability for cardboard, carton, and flexible packaging applications.</p>
-          <MagnifyCarousel slides={partnerSlides} />
-          <p className="partners-count">We have partnered with 25+ trusted brands so far.</p>
-        </section>
+        {/* ── Partners ───────────────────────────────────────────────────────── */}
+<section id="partners" className="partners-section">
+  {/* SEO FIX: H2 includes brand names — high-value keyword signal */}
+  <h2>Trusted Partner Brands</h2>
+  <p>
+    Our nylon polymer analogs deliver superior print clarity for cardboard and carton box applications.
+    We supply to major brands including Patanjali, Anchor, Havells and others.
+  </p>
+  <MagnifyCarousel slides={partnerSlides} />
+  <p className="partners-count">We have partnered with <strong>25+ trusted brands</strong> so far.</p>
+</section>
 
-        <section id="facilities" className="facilities-section">
-          <h2>Our Facilities</h2>
+        {/* ── Facilities ─────────────────────────────────────────────────────── */}
+<section id="facilities" className="facilities-section">
+  {/* SEO FIX: H2 with keyword context */}
+  <h2>Polymer Analog Features</h2>
           <div className="facility-grid first-row">
             {facilities.slice(0, 3).map(item => (
               <article key={item.title} className="facility-card">
@@ -417,103 +444,134 @@ function App() {
           </div>
         </section>
 
+        {/* ── Locations ──────────────────────────────────────────────────────── */}
         <section id="locations" className="locations-section">
-          <h2>Our Delivery Coverage</h2>
-          <p>Based in Haridwar, Uttarakhand, we deliver polymer analogs across the country through a combination of local logistics and nationwide courier partners.</p>
+          {/* SEO FIX: H2 includes geography keywords */}
+          <h2>Polymer Analog Delivery Coverage</h2>
+          <p>
+            Based in <strong>Haridwar, Uttarakhand</strong>, IA Enterprises delivers nylon polymer analogs
+            across India through a combination of local logistics and nationwide courier partners. <br />
+            We serve packaging printers and FMCG brands in Dehradun, Roorkee, Delhi NCR,
+            Lucknow, Siliguri, and beyond.
+          </p>
           <div className="delivery-grid">
             <div className="delivery-map">
-              <img src="/india.svg" alt="India" />
+              <img src="/india.svg" alt="Delivery coverage map of IA Enterprises across India" />
             </div>
             <div className="delivery-cards">
               <div className="delivery-card">
                 <div className="delivery-card-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18" r="2.5"/><circle cx="18.5" cy="18" r="2.5"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="1" y="3" width="15" height="13" rx="2"/>
+                    <path d="M16 8h4l3 5v3h-7V8z"/>
+                    <circle cx="5.5" cy="18" r="2.5"/>
+                    <circle cx="18.5" cy="18" r="2.5"/>
+                  </svg>
                 </div>
-                <h3>Near Haridwar</h3>
-                <p>We deliver within <strong>24 hours</strong> to Haridwar, Roorkee, Dehradun and nearby locations in Uttarakhand and UP through our own fleet.</p>
+                <h3>Same-Day Dispatch Near Haridwar</h3>
+                <p>We deliver within <strong>24 hours</strong> to Haridwar, Roorkee, Dehradun, and nearby locations in Uttarakhand and UP through our own fleet.</p>
               </div>
               <div className="delivery-card">
                 <div className="delivery-card-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v4"/><polyline points="3 10 12 15 21 10"/><path d="M7 16v2a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3v-2"/><line x1="3" y1="22" x2="11" y2="22"/><line x1="13" y1="22" x2="21" y2="22"/><line x1="7" y1="22" x2="7" y2="17"/><line x1="17" y1="22" x2="17" y2="17"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v4"/>
+                    <polyline points="3 10 12 15 21 10"/>
+                    <path d="M7 16v2a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3v-2"/>
+                    <line x1="3" y1="22" x2="11" y2="22"/>
+                    <line x1="13" y1="22" x2="21" y2="22"/>
+                    <line x1="7" y1="22" x2="7" y2="17"/>
+                    <line x1="17" y1="22" x2="17" y2="17"/>
+                  </svg>
                 </div>
-                <h3>Across India</h3>
-                <p>For all other cities across the country, we ship through trusted courier partners. Transport charges* may apply, and delivery is typically completed within <strong>2-3 business days</strong>.</p>
+                <h3>Pan-India Shipping for Polymer Analogs</h3>
+                <p>For all other cities across India, we ship through trusted courier partners. Transport charges* may apply, with delivery typically within <strong>2–3 business days</strong>.</p>
               </div>
             </div>
           </div>
         </section>
 
+        {/* ── Contact ────────────────────────────────────────────────────────── */}
         <section className="contact-section">
           <div className="contact-grid" id="contact">
             <div className="contact-card">
-              <h2>Contact Information</h2>
-              <p>For inquiries about nylon polymer blocks for cardboard, carton boxes, woven and non-woven sacks, custom orders, or supply partnerships, reach out to our team.</p>
-              <div className="contact-details">
-                <div><strong>Phone:</strong><p>+91 9456550662</p></div>
-                <div><strong>Email:</strong><p>kuldeepbhatnagar311@gmail.com</p></div>
-                <div><strong>Address:</strong><p>Haridwar, Uttarakhand, India</p></div>
-                <div>
-                  <strong>Location:</strong>
-                  <iframe
-                    src="https://maps.google.com/maps?q=29.969684,78.044939&z=15&output=embed&iwloc=near"
-                    width="300"
-                    height="200"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  ></iframe>
-                  <address style={{ marginTop: "0.5rem", fontStyle: "normal" }}>
-                    Vijay Nagar colony,<br />
-                    Plot no -11, khasra no -516<br />
-                    Behind Atrish Public School,<br />
-                    Roshanabad,<br />
-                    District - Haridwar<br />
-                    Uttarakhand<br />
-                    Pin -249404
-                  </address>
+              {/* SEO FIX: H2 with location keyword */}
+              <h2>Contact IA Enterprises</h2>
+              <p>
+                For inquiries about <strong>nylon polymer analogs</strong> for cardboard, carton boxes,
+                woven and non-woven sacks, custom orders, or supply partnerships, reach out to our team.
+              </p>
+               <div className="contact-details">
+                  <div><strong>Phone:</strong><p>+91 7017150799</p></div>
+                 <div><strong>Email:</strong><p>kuldeepbhatnagar311@gmail.com</p></div>
+                 <div><strong>Address:</strong><p>Haridwar, Uttarakhand, India – 249404</p></div>
+                 <div>
+                   <strong>Location:</strong>
+                   <iframe
+                     src="https://maps.google.com/maps?q=29.969684,78.044939&z=15&output=embed&iwloc=near"
+                     width="300"
+                     height="200"
+                     style={{ border: 0 }}
+                     allowFullScreen=""
+                     loading="lazy"
+                     referrerPolicy="no-referrer-when-downgrade"
+                     title="IA Enterprises location on Google Maps – Haridwar, Uttarakhand"
+                   ></iframe>
+                   <address style={{ marginTop: "0.5rem", fontStyle: "normal" }}>
+                     Vijay Nagar Colony,<br />
+                     Plot no-11, Khasra no-516<br />
+                     Behind Atrish Public School,<br />
+                     Roshanabad,<br />
+                     District – Haridwar, Uttarakhand<br />
+                     Pin – 249404
+                   </address>
+                  <strong>GST Number:</strong><p>05AGYPB839F1ZW</p>
+                  </div>
                 </div>
-                <div><strong>GST Number:</strong><p>05AGYPB839F1ZW</p></div>
-              </div>
             </div>
 
-              <div className="form-wrapper" id="send-query">
-               <form className="query-form" onSubmit={handleSubmit}>
-                 <h2>Send Your Query</h2>
-                 <div className="query-fields">
-                   <p className="required-note">Fields marked with <span className="required">*</span> are required.</p>
-                   <label>Name <span className="required">*</span>
-                     <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Your name" required />
-                   </label>
-                   <label>Email <span className="required">*</span>
-                     <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@example.com" required />
-                   </label>
-                   <label>Phone <span className="required">*</span>
-                     <input type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder="+91 9XXXXXXXXX" required />
-                   </label>
-                   <label>Firm Name
-                     <input type="text" name="firmName" value={form.firmName} onChange={handleChange} placeholder="Your company or firm name" />
-                   </label>
-                   <label>City
-                     <input type="text" name="city" value={form.city} onChange={handleChange} placeholder="City where you need supply" />
-                   </label>
-                   <label>Message
-                     <textarea name="message" value={form.message} onChange={handleChange} placeholder="Tell us about your requirements" rows="5" />
-                   </label>
-                 </div>
-                 <button type="submit" disabled={loading || !form.name.trim() || !form.email.trim() || !form.phone.trim()}>
-                   {loading ? "Sending..." : "Submit Query"}
-                 </button>
-                 {submitted && <p className="success-message">Thanks! Your query has been sent. We'll get back to you soon!</p>}
-                 {error    && <p className="error-message">{error}</p>}
-               </form>
+            <div className="form-wrapper" id="send-query">
+              <form className="query-form" onSubmit={handleSubmit}>
+                <h2>Send Your Query</h2>
+                <div className="query-fields">
+                  <p className="required-note">Fields marked with <span className="required">*</span> are required.</p>
+                  <label>Name <span className="required">*</span>
+                    <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Your name" required />
+                  </label>
+                  <label>Email <span className="required">*</span>
+                    <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@example.com" required />
+                  </label>
+                  <label>Phone <span className="required">*</span>
+                    <input type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder="+91 9XXXXXXXXX" required />
+                  </label>
+                  <label>Firm Name
+                    <input type="text" name="firmName" value={form.firmName} onChange={handleChange} placeholder="Your company or firm name" />
+                  </label>
+                  <label>City
+                    <input type="text" name="city" value={form.city} onChange={handleChange} placeholder="City where you need supply" />
+                  </label>
+                  <label>Message
+                    <textarea name="message" value={form.message} onChange={handleChange} placeholder="Tell us about your polymer analog or carton printing requirements" rows="5" />
+                  </label>
+                </div>
+                <button type="submit" disabled={loading || !form.name.trim() || !form.email.trim() || !form.phone.trim()}>
+                  {loading ? "Sending..." : "Submit Query"}
+                </button>
+                {submitted && <p className="success-message">Thanks! Your query has been sent. We'll get back to you soon!</p>}
+                {error     && <p className="error-message">{error}</p>}
+              </form>
             </div>
           </div>
         </section>
       </main>
 
       <footer className="footer-section">
-        <p>© {new Date().getFullYear()} IA Enterprises. Nylon polymer analog manufacturing firm.</p>
+        <p>
+          © {new Date().getFullYear()} IA Enterprises.
+        </p>
+        <p style={{ fontSize: "0.8rem", opacity: 0.7, marginTop: "0.3rem" }}>
+           Nylon polymer analog manufacturer.
+          Supplying carton box printing analogs and cardboard packaging solutions across India.
+        </p>
       </footer>
     </div>
   );
