@@ -13,14 +13,6 @@ export default async function handler(req, res) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
-  // TEMPORARY DEBUG - remove after fixing
-  console.log('ENV CHECK:', {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS ? 'EXISTS' : 'MISSING',
-    to: process.env.EMAIL_TO,
-    host: process.env.SMTP_HOST,
-  });
-
   try {
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
@@ -28,7 +20,7 @@ export default async function handler(req, res) {
       secure: false,
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
 
