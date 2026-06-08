@@ -111,13 +111,6 @@ html {
 }
 
 
-.partners-count {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
-  margin-top: 1rem;
-}
-
 .hero-button {
   display: inline-block;
   background: white;
@@ -621,19 +614,6 @@ section > p {
   }
 }
 
-.map-label {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  background: rgba(0, 0, 0, 0.72);
-  color: white;
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 0.35rem 0.85rem;
-  border-radius: 8px;
-  backdrop-filter: blur(6px);
-  z-index: 1;
-}
 
 .delivery-cards {
   display: flex;
@@ -907,16 +887,8 @@ section > p {
     padding-bottom: 2rem;
   }
 
-  .city-list {
-    gap: 0.75rem;
-  }
-
-  .delivery-note {
-    margin: 2.5rem auto 0 auto;
-  }
-
-  .footer-section {
-    padding: 1.5rem;
+   .footer-section {
+     padding: 1.5rem;
   }
 }
 
@@ -924,7 +896,7 @@ section > p {
 
 /* ─────────────────────────────────────────────
 
-   MAGNIFYING CAROUSEL  — add to your App.css
+   MAGNIFYING CAROUSEL
    ───────────────────────────────────────────── */
 
 .carousel-wrapper {
@@ -979,11 +951,6 @@ section > p {
   pointer-events: none;
   user-select: none;
   padding: 12px;
-}
-
-/* white border on the focused center slide */
-.carousel-slide.is-center {
-  /* box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85); */
 }
 
 .carousel-slide-overlay {
